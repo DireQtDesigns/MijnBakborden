@@ -138,7 +138,7 @@ public class BakbordenLijstFragment extends Fragment {
         ((ArrayAdapter) lijst.getAdapter()).addAll(stations);
         ((ArrayAdapter) lijst.getAdapter()).notifyDataSetChanged();
 
-        //TODO Stupid data garbling. Mind you, station abbrev is displayed correctly tho
+        //TODO Stupid data garbling. Mind you, station abbrev is displayed correctly tho.
     }
 
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
