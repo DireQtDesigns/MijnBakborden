@@ -1,0 +1,60 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/lijst_item"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="?android:attr/selectableItemBackground"
+    android:clickable="true"
+    android:minHeight="50dp"
+    android:paddingTop="2dp"
+    android:paddingBottom="2dp">
+
+    <TextView
+        android:id="@+id/tvName"
+        android:layout_width="100dp"
+        android:layout_height="89dp"
+        android:background="@mipmap/stationsbord"
+        android:gravity="center"
+        android:textColor="@color/white"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        tools:text="Hgl" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="85dp"
+        android:background="@drawable/borderleft"
+        android:orientation="vertical"
+        android:paddingLeft="5dp">
+
+        <TextView
+            android:id="@+id/tvPlatform1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            tools:text="Sp2 A -> B: 2, 4, 6, 8, E, S" />
+
+        <TextView
+            android:id="@+id/tvPlatform2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            tools:text="Sp2 B -> A: 2, 4, 6, 8, E, S" />
+
+        <TextView
+            android:id="@+id/tvPlatform3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            tools:text="Sp3 A -> B: 2, 4, 6, 8, E, S" />
+
+        <TextView
+            android:id="@+id/tvPlatform4"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            tools:text="Sp3 B -> A: 2, 4, 6, 8, E, S" />
+
+        <TextView
+            android:id="@+id/tvPlatform5"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            tools:text="Klik om meer weer te geven" />
+    </LinearLayout>
+</LinearLayout>
