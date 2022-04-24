@@ -58,6 +58,7 @@ public class BakbordenLijstFragment extends Fragment {
             Toast toast = Toast.makeText(getContext(),
                     "Fout opgetreden tijdens inladen data, nieuwe lijst aangemaakt!",
                     Toast.LENGTH_SHORT);
+
             toast.show();
         }
         saveMap(stationsMap);

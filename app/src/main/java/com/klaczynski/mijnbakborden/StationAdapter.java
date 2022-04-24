@@ -31,6 +31,7 @@ public class StationAdapter extends ArrayAdapter<Station> {
     public View getView(int position, View convertView, ViewGroup parent) {
         // Get the data item for this position
         Station station = getItem(position);
+        HashMap<String, Platform> platforms = BakbordenLijstFragment.stationsMap.get(station.getAbbreviation()).getPlatforms();
         // Check if an existing view is being reused, otherwise inflate the view
         if (convertView == null) {
             convertView = LayoutInflater.from(getContext()).inflate(R.layout.item_station, parent, false);
@@ -45,10 +46,8 @@ public class StationAdapter extends ArrayAdapter<Station> {
 
         // Populate the data into the view using the data object
         stationAbbrev.setText(station.getAbbreviation());
-        HashMap<String, Platform> platforms = station.getPlatforms();
 
         LinearLayout layout = (LinearLayout) convertView;
-        //layout.setTag(position);
         layout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -64,18 +63,13 @@ public class StationAdapter extends ArrayAdapter<Station> {
             return convertView;
         }
 
+
         //Eerste spoor
         Platform p1 = platforms.get(platforms.keySet().toArray()[0]);
         String p1Text = p1.getName();
         if (p1.isA_to_b()) p1Text += " A -> B: ";
         else p1Text += " B -> A: ";
-        for (int i = 0; i < p1.getBakborden().size(); i++) {
-            if (i != p1.getBakborden().size() - 1) {
-                p1Text += p1.getBakborden().get(i).toString().replace("99", "Eindbord").replace("123", "Sein").replace("456", "Stootjuk") + ", ";
-            } else {
-                p1Text += p1.getBakborden().get(i).toString().replace("99", "Eindbord").replace("123", "Sein").replace("456", "Stootjuk");
-            }
-        }
+        p1Text += p1.bakbordenString();
         tvP1.setText(p1Text);
 
 
@@ -86,13 +80,7 @@ public class StationAdapter extends ArrayAdapter<Station> {
         String p2Text = p2.getName();
         if (p2.isA_to_b()) p2Text += " A -> B: ";
         else p2Text += " B -> A: ";
-        for (int i = 0; i < p2.getBakborden().size(); i++) {
-            if (i != p2.getBakborden().size() - 1) {
-                p2Text += p2.getBakborden().get(i).toString().replace("99", "Eindbord").replace("123", "Sein").replace("456", "Stootjuk") + ", ";
-            } else {
-                p2Text += p2.getBakborden().get(i).toString().replace("99", "Eindbord").replace("123", "Sein").replace("456", "Stootjuk");
-            }
-        }
+        p2Text += p2.bakbordenString();
         tvP2.setText(p2Text);
 
 
@@ -103,13 +91,7 @@ public class StationAdapter extends ArrayAdapter<Station> {
         String p3Text = p3.getName();
         if (p3.isA_to_b()) p3Text += " A -> B: ";
         else p3Text += " B -> A: ";
-        for (int i = 0; i < p3.getBakborden().size(); i++) {
-            if (i != p3.getBakborden().size() - 1) {
-                p3Text += p3.getBakborden().get(i).toString().replace("99", "Eindbord").replace("123", "Sein").replace("456", "Stootjuk") + ", ";
-            } else {
-                p3Text += p3.getBakborden().get(i).toString().replace("99", "Eindbord").replace("123", "Sein").replace("456", "Stootjuk");
-            }
-        }
+        p3Text += p3.bakbordenString();
         tvP3.setText(p3Text);
 
         //Eventueel meer sporen, dan puntjes weergeven
