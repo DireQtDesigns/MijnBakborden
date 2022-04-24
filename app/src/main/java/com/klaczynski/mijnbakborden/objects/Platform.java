@@ -49,4 +49,6 @@ public class Platform {
         }
         return returnString;
     }
+
+    //TODO Multi-directional platforms
 }

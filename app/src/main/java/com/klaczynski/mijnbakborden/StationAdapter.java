@@ -37,12 +37,12 @@ public class StationAdapter extends ArrayAdapter<Station> {
             convertView = LayoutInflater.from(getContext()).inflate(R.layout.item_station, parent, false);
         }
         // Lookup view for data population
-        TextView stationAbbrev = (TextView) convertView.findViewById(R.id.tvName);
-        TextView tvP1 = (TextView) convertView.findViewById(R.id.tvPlatform1);
-        TextView tvP2 = (TextView) convertView.findViewById(R.id.tvPlatform2);
-        TextView tvP3 = (TextView) convertView.findViewById(R.id.tvPlatform3);
-        TextView tvP4 = (TextView) convertView.findViewById(R.id.tvPlatform4);
-        TextView tvP5 = (TextView) convertView.findViewById(R.id.tvPlatform5);
+        TextView stationAbbrev = convertView.findViewById(R.id.tvName);
+        TextView tvP1 = convertView.findViewById(R.id.tvPlatform1);
+        TextView tvP2 = convertView.findViewById(R.id.tvPlatform2);
+        TextView tvP3 = convertView.findViewById(R.id.tvPlatform3);
+        TextView tvP4 = convertView.findViewById(R.id.tvPlatform4);
+        TextView tvP5 = convertView.findViewById(R.id.tvPlatform5);
 
         // Populate the data into the view using the data object
         stationAbbrev.setText(station.getAbbreviation());
@@ -56,6 +56,12 @@ public class StationAdapter extends ArrayAdapter<Station> {
             }
         });
 
+        tvP1.setText("");
+        tvP2.setText("");
+        tvP3.setText("");
+        tvP4.setText("");
+        tvP5.setText("");
+
         //Check of station sporen heeft
         if (platforms == null || platforms.size() == 0) {
             tvP1.setText("Geen sporen gevonden");
@@ -63,36 +69,30 @@ public class StationAdapter extends ArrayAdapter<Station> {
             return convertView;
         }
 
-
         //Eerste spoor
         Platform p1 = platforms.get(platforms.keySet().toArray()[0]);
         String p1Text = p1.getName();
-        if (p1.isA_to_b()) p1Text += " A -> B: ";
-        else p1Text += " B -> A: ";
+        p1Text += p1.isA_to_b() ? " A -> B: ": " B -> A: ";
         p1Text += p1.bakbordenString();
         tvP1.setText(p1Text);
 
-
         //Tweede spoor
-        if (platforms.size() == 1)
-            return convertView;
-        Platform p2 = platforms.get(platforms.keySet().toArray()[1]);
-        String p2Text = p2.getName();
-        if (p2.isA_to_b()) p2Text += " A -> B: ";
-        else p2Text += " B -> A: ";
-        p2Text += p2.bakbordenString();
-        tvP2.setText(p2Text);
-
+        if (platforms.size() > 1) {
+            Platform p2 = platforms.get(platforms.keySet().toArray()[1]);
+            String p2Text = p2.getName();
+            p2Text += p2.isA_to_b() ? " A -> B: ": " B -> A: ";
+            p2Text += p2.bakbordenString();
+            tvP2.setText(p2Text);
+        }
 
         //Derde spoor
-        if (platforms.size() == 2)
-            return convertView;
-        Platform p3 = platforms.get(platforms.keySet().toArray()[2]);
-        String p3Text = p3.getName();
-        if (p3.isA_to_b()) p3Text += " A -> B: ";
-        else p3Text += " B -> A: ";
-        p3Text += p3.bakbordenString();
-        tvP3.setText(p3Text);
+        if (platforms.size() > 2) {
+            Platform p3 = platforms.get(platforms.keySet().toArray()[2]);
+            String p3Text = p3.getName();
+            p3Text += p3.isA_to_b() ? " A -> B: ": " B -> A: ";
+            p3Text += p3.bakbordenString();
+            tvP3.setText(p3Text);
+        }
 
         //Eventueel meer sporen, dan puntjes weergeven
         if (platforms.size() > 3) {
