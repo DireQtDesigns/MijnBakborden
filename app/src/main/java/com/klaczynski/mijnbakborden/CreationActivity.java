@@ -150,7 +150,7 @@ public class CreationActivity extends AppCompatActivity {
                 Station station = BakbordenLijstFragment.stationsMap.get(abbrevCap);
                 if (station.getPlatforms() == null)
                     station.setPlatforms(new HashMap<String, Platform>());
-                station.getPlatforms().put(perronNummer.getText().toString(), platform);
+                station.getPlatforms().put(directionalName, platform);
                 BakbordenLijstFragment.stationsMap.put(abbrevCap, station);
                 Toast toast = Toast.makeText(getApplicationContext(),
                         "Station " + abbrevCap + " is ge-updatet!",
@@ -159,7 +159,7 @@ public class CreationActivity extends AppCompatActivity {
                 finish();
             } else {
                 HashMap<String, Platform> newPlatforms = new HashMap<String, Platform>();
-                newPlatforms.put(perronNummer.getText().toString(), platform);
+                newPlatforms.put(directionalName, platform);
                 Station newStation = new Station(stationsNaam.getText().toString(), abbrevCap, newPlatforms);
                 BakbordenLijstFragment.stationsMap.put(abbrevCap, newStation);
                 Toast toast = Toast.makeText(getApplicationContext(),
