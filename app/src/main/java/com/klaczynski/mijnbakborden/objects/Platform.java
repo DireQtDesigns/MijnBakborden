@@ -5,10 +5,12 @@ import java.util.ArrayList;
 public class Platform {
 
     private String name;
+    private String directionalName;
     private boolean a_to_b;
     private ArrayList<Integer> bakborden;
 
-    public Platform(String name, boolean a_to_b, ArrayList<Integer> bakborden) {
+    public Platform(String directionalName, String name, boolean a_to_b, ArrayList<Integer> bakborden) {
+        this.directionalName = directionalName;
         this.name = name;
         this.a_to_b = a_to_b;
         this.bakborden = bakborden;
@@ -16,6 +18,14 @@ public class Platform {
 
     public String getName() {
         return name;
+    }
+
+    public String getDirectionalName() {
+        return directionalName;
+    }
+
+    public void setDirectionalName(String directionalName) {
+        this.directionalName = directionalName;
     }
 
     public boolean isA_to_b() {
@@ -49,6 +59,4 @@ public class Platform {
         }
         return returnString;
     }
-
-    //TODO Multi-directional platforms
 }

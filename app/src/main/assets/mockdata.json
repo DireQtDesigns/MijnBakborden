@@ -1,1 +1,247 @@
-{"Aml":{"abbreviation":"Aml","fullName":"Almelo","platforms":{"1":{"a_to_b":true,"bakborden":[123],"name":"1"},"2":{"a_to_b":true,"bakborden":[99],"name":"2"},"3":{"a_to_b":true,"bakborden":[456],"name":"3"},"4":{"a_to_b":false,"bakborden":[4,6,8,10,12],"name":"4"},"5":{"a_to_b":false,"bakborden":[123],"name":"5"}}},"Hgl":{"abbreviation":"Hgl","fullName":"Hengelo","platforms":{"2":{"a_to_b":false,"bakborden":[6,8,10,14,123],"name":"2"},"3":{"a_to_b":true,"bakborden":[6,8,10,14,123],"name":"3"}}},"Bn":{"abbreviation":"Bn","fullName":"Borne","platforms":{"1":{"a_to_b":false,"bakborden":[2,3,4,6],"name":"1"},"2":{"a_to_b":true,"bakborden":[99],"name":"2"}}},"Esk":{"abbreviation":"Esk","fullName":"Enschede Kennispark","platforms":{"1":{"a_to_b":false,"bakborden":[4,7],"name":"1"},"2":{"a_to_b":true,"bakborden":[7],"name":"2"}}},"Amri":{"abbreviation":"Amri","fullName":"Almelo de Riet","platforms":{"1":{"a_to_b":false,"bakborden":[2,3,4,6],"name":"1"},"2":{"a_to_b":true,"bakborden":[2,3,4,6],"name":"2"}}}}
+{
+  "Wdn": {
+    "abbreviation": "Wdn",
+    "fullName": "Wierden",
+    "platforms": {
+      "2:ba": {
+        "a_to_b": false,
+        "bakborden": [
+          3,
+          4,
+          6
+        ],
+        "directionalName": "2:ba",
+        "name": "2"
+      },
+      "1:ab": {
+        "a_to_b": true,
+        "bakborden": [
+          123
+        ],
+        "directionalName": "1:ab",
+        "name": "1"
+      }
+    }
+  },
+  "Aml": {
+    "abbreviation": "Aml",
+    "fullName": "Almelo",
+    "platforms": {
+      "3:ab": {
+        "a_to_b": true,
+        "bakborden": [
+          456
+        ],
+        "directionalName": "3:ab",
+        "name": "3"
+      },
+      "5:ba": {
+        "a_to_b": false,
+        "bakborden": [
+          123
+        ],
+        "directionalName": "5:ba",
+        "name": "5"
+      },
+      "1:ab": {
+        "a_to_b": true,
+        "bakborden": [
+          123
+        ],
+        "directionalName": "1:ab",
+        "name": "1"
+      },
+      "4:ba": {
+        "a_to_b": false,
+        "bakborden": [
+          4,
+          6,
+          8,
+          10,
+          12
+        ],
+        "directionalName": "4:ba",
+        "name": "4"
+      },
+      "2:ab": {
+        "a_to_b": true,
+        "bakborden": [
+          99
+        ],
+        "directionalName": "2:ab",
+        "name": "2"
+      }
+    }
+  },
+  "Hon": {
+    "abbreviation": "Hon",
+    "fullName": "Holten",
+    "platforms": {
+      "2:ba": {
+        "a_to_b": false,
+        "bakborden": [
+          3,
+          4,
+          6
+        ],
+        "directionalName": "2:ba",
+        "name": "2"
+      }
+    }
+  },
+  "Amf": {
+    "abbreviation": "Amf",
+    "fullName": "Amersfoort Centraal",
+    "platforms": {
+      "6:ba": {
+        "a_to_b": false,
+        "bakborden": [
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          10,
+          99
+        ],
+        "directionalName": "6:ba",
+        "name": "6"
+      }
+    }
+  },
+  "Hgl": {
+    "abbreviation": "Hgl",
+    "fullName": "Hengelo",
+    "platforms": {
+      "2:ba": {
+        "a_to_b": false,
+        "bakborden": [
+          6,
+          8,
+          10,
+          14,
+          123
+        ],
+        "directionalName": "2:ba",
+        "name": "2"
+      },
+      "3:ab": {
+        "a_to_b": true,
+        "bakborden": [
+          6,
+          8,
+          10,
+          14,
+          123
+        ],
+        "directionalName": "3:ab",
+        "name": "3"
+      }
+    }
+  },
+  "Bn": {
+    "abbreviation": "Bn",
+    "fullName": "Borne",
+    "platforms": {
+      "2:ab": {
+        "a_to_b": true,
+        "bakborden": [
+          99
+        ],
+        "directionalName": "2:ab",
+        "name": "2"
+      },
+      "1:ba": {
+        "a_to_b": false,
+        "bakborden": [
+          2,
+          3,
+          4,
+          6
+        ],
+        "directionalName": "1:ba",
+        "name": "1"
+      }
+    }
+  },
+  "Esk": {
+    "abbreviation": "Esk",
+    "fullName": "Enschede Kennispark",
+    "platforms": {
+      "2:ab": {
+        "a_to_b": true,
+        "bakborden": [
+          7
+        ],
+        "directionalName": "2:ab",
+        "name": "2"
+      },
+      "1:ba": {
+        "a_to_b": false,
+        "bakborden": [
+          4,
+          7
+        ],
+        "directionalName": "1:ba",
+        "name": "1"
+      }
+    }
+  },
+  "Amri": {
+    "abbreviation": "Amri",
+    "fullName": "Almelo de Riet",
+    "platforms": {
+      "2:ab": {
+        "a_to_b": true,
+        "bakborden": [
+          2,
+          3,
+          4,
+          6
+        ],
+        "directionalName": "2:ab",
+        "name": "2"
+      },
+      "1:ba": {
+        "a_to_b": false,
+        "bakborden": [
+          2,
+          3,
+          4,
+          6
+        ],
+        "directionalName": "1:ba",
+        "name": "1"
+      }
+    }
+  },
+  "Rsn": {
+    "abbreviation": "Rsn",
+    "fullName": "Rijssen",
+    "platforms": {
+      "3:ba": {
+        "a_to_b": false,
+        "bakborden": [
+          99
+        ],
+        "directionalName": "3:ba",
+        "name": "3"
+      }
+    }
+  },
+  "Es": {
+    "abbreviation": "Es",
+    "fullName": "Enschede",
+    "platforms": {
+      "1:ab": {
+        "a_to_b": true,
+        "bakborden": [
+          456
+        ],
+        "directionalName": "1:ab",
+        "name": "1"
+      }
+    }
+  }
+}

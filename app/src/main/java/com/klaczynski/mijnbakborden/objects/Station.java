@@ -28,11 +28,12 @@ public class Station {
         return platforms;
     }
 
-    public void addPlatform(String platformName, boolean a_to_b) {
+    public void addEmptyPlatform(String platformName, boolean a_to_b) {
+        String directionalName = platformName + ":" + (a_to_b ? "ab" : "ba");
         if (platforms == null) {
             this.platforms = new HashMap<String, Platform>();
         }
-        platforms.put(platformName, new Platform(platformName, a_to_b, new ArrayList<Integer>()));
+        platforms.put(platformName, new Platform(directionalName, platformName, a_to_b, new ArrayList<Integer>()));
     }
 
 

@@ -79,10 +79,10 @@ public class MainActivity extends AppCompatActivity {
             fragment.stationsMap = new HashMap<String, Station>();
             fragment.stations = new ArrayList<Station>();
             fragment.syncData(true);
-            fragment.saveMap(fragment.stationsMap);
+            fragment.saveMap(fragment.stationsMap, Definitions.STATION_LIST_KEY);
         } else if(id == R.id.action_mock_data) {
             fragment.stationsMap = fragment.loadMapJson();
-            fragment.saveMap(fragment.stationsMap);
+            fragment.saveMap(fragment.stationsMap, Definitions.STATION_LIST_KEY);
             fragment.syncData(true);
         } else if(id == R.id.action_refresh) {
             fragment.syncData(true);

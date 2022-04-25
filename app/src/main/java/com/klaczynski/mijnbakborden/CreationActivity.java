@@ -134,24 +134,26 @@ public class CreationActivity extends AppCompatActivity {
             if(bord16.isChecked()) bakborden.add(16);
             if(bordE.isChecked()) bakborden.add(99);
             if(bordS.isChecked()) bakborden.add(123);
-            if(bordJ.isChecked()) bakborden.add(456);
+            if (bordJ.isChecked()) bakborden.add(456);
 
             if (bakborden.size() == 0 || bakborden == null) {
                 Toast toast = Toast.makeText(getApplicationContext(),
-                        "Geen geldige selectie gemaaakt of er is een fout opgetreden!",
+                        "Geen geldige selectie gemaakt of er is een fout opgetreden!",
                         Toast.LENGTH_SHORT);
                 toast.show();
                 return;
             }
 
-            Platform platform = new Platform(perronNummer.getText().toString(), rijRichting.isChecked(), bakborden);
-            if(BakbordenLijstFragment.stationExists(abbrevCap)) {
+            String directionalName = perronNummer.getText().toString() + ":" + (rijRichting.isChecked() ? "ab" : "ba");
+            Platform platform = new Platform(directionalName, perronNummer.getText().toString(), rijRichting.isChecked(), bakborden);
+            if (BakbordenLijstFragment.stationExists(abbrevCap)) {
                 Station station = BakbordenLijstFragment.stationsMap.get(abbrevCap);
-                if(station.getPlatforms() == null) station.setPlatforms(new HashMap<String, Platform>());
+                if (station.getPlatforms() == null)
+                    station.setPlatforms(new HashMap<String, Platform>());
                 station.getPlatforms().put(perronNummer.getText().toString(), platform);
                 BakbordenLijstFragment.stationsMap.put(abbrevCap, station);
                 Toast toast = Toast.makeText(getApplicationContext(),
-                        "Station "+abbrevCap+" is ge-updatet!",
+                        "Station " + abbrevCap + " is ge-updatet!",
                         Toast.LENGTH_SHORT);
                 toast.show();
                 finish();
