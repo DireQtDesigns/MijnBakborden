@@ -102,7 +102,7 @@ public class BakbordenLijstFragment extends Fragment {
         Gson gson = new Gson();
         String json = loadJSONFromAsset();
         Log.d(TAG, "loadMap: Geladen json: " + json);
-        if(json == null || json.equals("null") || json.equals("[]")) {
+        if (json == null || json.equals("null") || json.equals("[]")) {
             Log.d(TAG, "loadArrayList: Geen data aanwezig, genereert nieuwe lijst..");
             return new HashMap<String, Station>();
         }
@@ -172,7 +172,8 @@ public class BakbordenLijstFragment extends Fragment {
 
     public static boolean stationExists(String abbreviation) {
         for (int i = 0; i < stationsMap.size(); i++) {
-            if(stationsMap.get(stationsMap.keySet().toArray()[i]).getAbbreviation().equals(abbreviation)) return true;
+            if (stationsMap.get(stationsMap.keySet().toArray()[i]).getAbbreviation().equals(abbreviation))
+                return true;
         }
         return false;
     }

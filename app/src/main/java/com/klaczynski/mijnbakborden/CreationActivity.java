@@ -54,7 +54,7 @@ public class CreationActivity extends AppCompatActivity {
         bordG.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton compoundButton, boolean isChecked) {
-                if(isChecked) {
+                if (isChecked) {
                     bord1.setChecked(false);
                     bord2.setChecked(false);
                     bord3.setChecked(false);
@@ -81,7 +81,7 @@ public class CreationActivity extends AppCompatActivity {
             @Override
             public void onCheckedChanged(CompoundButton compoundButton, boolean isChecked) {
                 bordG.setChecked(false);
-                if(isChecked && bordJ.isChecked()) {
+                if (isChecked && bordJ.isChecked()) {
                     bordJ.setChecked(false);
                     Toast toast = Toast.makeText(getApplicationContext(),
                             "Zowel sein als juk samen onmogelijk!",
@@ -94,7 +94,7 @@ public class CreationActivity extends AppCompatActivity {
             @Override
             public void onCheckedChanged(CompoundButton compoundButton, boolean isChecked) {
                 bordG.setChecked(false);
-                if(isChecked && bordS.isChecked()) {
+                if (isChecked && bordS.isChecked()) {
                     bordS.setChecked(false);
                     Toast toast = Toast.makeText(getApplicationContext(),
                             "Zowel sein als juk samen onmogelijk!",
@@ -114,26 +114,26 @@ public class CreationActivity extends AppCompatActivity {
                 return;
             }
             String abbrev = stationsAfkorting.getText().toString();
-            String abbrevCap = abbrev.substring(0,1).toUpperCase() + abbrev.substring(1).toLowerCase();
+            String abbrevCap = abbrev.substring(0, 1).toUpperCase() + abbrev.substring(1).toLowerCase();
             ArrayList<Integer> bakborden = new ArrayList<Integer>();
-            if(bord1.isChecked()) bakborden.add(1);
-            if(bord2.isChecked()) bakborden.add(2);
-            if(bord3.isChecked()) bakborden.add(3);
-            if(bord4.isChecked()) bakborden.add(4);
-            if(bord5.isChecked()) bakborden.add(5);
-            if(bord6.isChecked()) bakborden.add(6);
-            if(bord7.isChecked()) bakborden.add(7);
-            if(bord8.isChecked()) bakborden.add(8);
-            if(bord9.isChecked()) bakborden.add(9);
-            if(bord10.isChecked()) bakborden.add(10);
-            if(bord11.isChecked()) bakborden.add(11);
-            if(bord12.isChecked()) bakborden.add(12);
-            if(bord13.isChecked()) bakborden.add(13);
-            if(bord14.isChecked()) bakborden.add(14);
-            if(bord15.isChecked()) bakborden.add(15);
-            if(bord16.isChecked()) bakborden.add(16);
-            if(bordE.isChecked()) bakborden.add(99);
-            if(bordS.isChecked()) bakborden.add(123);
+            if (bord1.isChecked()) bakborden.add(1);
+            if (bord2.isChecked()) bakborden.add(2);
+            if (bord3.isChecked()) bakborden.add(3);
+            if (bord4.isChecked()) bakborden.add(4);
+            if (bord5.isChecked()) bakborden.add(5);
+            if (bord6.isChecked()) bakborden.add(6);
+            if (bord7.isChecked()) bakborden.add(7);
+            if (bord8.isChecked()) bakborden.add(8);
+            if (bord9.isChecked()) bakborden.add(9);
+            if (bord10.isChecked()) bakborden.add(10);
+            if (bord11.isChecked()) bakborden.add(11);
+            if (bord12.isChecked()) bakborden.add(12);
+            if (bord13.isChecked()) bakborden.add(13);
+            if (bord14.isChecked()) bakborden.add(14);
+            if (bord15.isChecked()) bakborden.add(15);
+            if (bord16.isChecked()) bakborden.add(16);
+            if (bordE.isChecked()) bakborden.add(99);
+            if (bordS.isChecked()) bakborden.add(123);
             if (bordJ.isChecked()) bakborden.add(456);
 
             if (bakborden.size() == 0 || bakborden == null) {
@@ -163,7 +163,7 @@ public class CreationActivity extends AppCompatActivity {
                 Station newStation = new Station(stationsNaam.getText().toString(), abbrevCap, newPlatforms);
                 BakbordenLijstFragment.stationsMap.put(abbrevCap, newStation);
                 Toast toast = Toast.makeText(getApplicationContext(),
-                        "Nieuw station "+abbrevCap+" is toegevoegd!",
+                        "Nieuw station " + abbrevCap + " is toegevoegd!",
                         Toast.LENGTH_SHORT);
                 toast.show();
                 finish();

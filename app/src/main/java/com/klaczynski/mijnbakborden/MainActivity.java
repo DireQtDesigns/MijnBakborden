@@ -40,7 +40,7 @@ public class MainActivity extends AppCompatActivity {
 
         setSupportActionBar(binding.toolbar);
         getSupportActionBar().setLogo(R.mipmap.ic_launcher_foreground);
-        getSupportActionBar().setDisplayUseLogoEnabled(true );
+        getSupportActionBar().setDisplayUseLogoEnabled(true);
 
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_content_main);
         appBarConfiguration = new AppBarConfiguration.Builder(navController.getGraph()).build();
@@ -60,8 +60,8 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        if(Definitions.DEBUG)
-        getMenuInflater().inflate(R.menu.menu_main, menu);
+        if (Definitions.DEBUG)
+            getMenuInflater().inflate(R.menu.menu_main, menu);
         return true;
     }
 
@@ -80,11 +80,11 @@ public class MainActivity extends AppCompatActivity {
             fragment.stations = new ArrayList<Station>();
             fragment.syncData(true);
             fragment.saveMap(fragment.stationsMap, Definitions.STATION_LIST_KEY);
-        } else if(id == R.id.action_mock_data) {
+        } else if (id == R.id.action_mock_data) {
             fragment.stationsMap = fragment.loadMapJson();
             fragment.saveMap(fragment.stationsMap, Definitions.STATION_LIST_KEY);
             fragment.syncData(true);
-        } else if(id == R.id.action_refresh) {
+        } else if (id == R.id.action_refresh) {
             fragment.syncData(true);
         }
 
