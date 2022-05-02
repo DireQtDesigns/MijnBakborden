@@ -241,6 +241,14 @@
         ],
         "directionalName": "1:ab",
         "name": "1"
+      },
+      "1:ba": {
+        "a_to_b": false,
+        "bakborden": [
+          123
+        ],
+        "directionalName": "1:ba",
+        "name": "1"
       }
     }
   }

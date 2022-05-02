@@ -1,5 +1,6 @@
-package com.klaczynski.mijnbakborden;
+package com.klaczynski.mijnbakborden.io;
 
+import com.klaczynski.mijnbakborden.BakbordenLijstFragment;
 import com.klaczynski.mijnbakborden.objects.Platform;
 import com.klaczynski.mijnbakborden.objects.Station;
 

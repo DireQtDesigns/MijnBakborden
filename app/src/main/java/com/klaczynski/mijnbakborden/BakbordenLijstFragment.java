@@ -7,21 +7,18 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.BaseAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
-import com.google.android.material.snackbar.Snackbar;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.klaczynski.mijnbakborden.databinding.LijstFragmentBinding;
-import com.klaczynski.mijnbakborden.objects.Platform;
+import com.klaczynski.mijnbakborden.io.InOutOperator;
+import com.klaczynski.mijnbakborden.misc.Definitions;
 import com.klaczynski.mijnbakborden.objects.Station;
 
 import java.io.IOException;
@@ -36,6 +33,7 @@ public class BakbordenLijstFragment extends Fragment {
     private LijstFragmentBinding binding;
     public static ArrayList<Station> stations;
     public static HashMap<String, Station> stationsMap;
+    InOutOperator io;
 
     @Override
     public View onCreateView(
@@ -44,11 +42,12 @@ public class BakbordenLijstFragment extends Fragment {
     ) {
         Log.d(TAG, "onCreateView: called");
         binding = LijstFragmentBinding.inflate(inflater, container, false);
+        io = new InOutOperator(getActivity());
         stations = new ArrayList<Station>();
         stationsMap = new HashMap<String, Station>();
         //Stationsdata laden / creeren indien niet aanwezig in opslag
         try {
-            stationsMap = loadMap(Definitions.STATION_LIST_KEY);
+            stationsMap = io.loadMap(Definitions.STATION_LIST_KEY);
             for (int i = 0; i < stationsMap.size(); i++) {
                 stations.add(stationsMap.get(stationsMap.keySet().toArray()[i]));
             }
@@ -69,66 +68,14 @@ public class BakbordenLijstFragment extends Fragment {
         lijst.setClickable(true);
 
         syncData(false);
-        saveMap(stationsMap, Definitions.STATION_LIST_KEY);
+        io.saveMap(stationsMap, Definitions.STATION_LIST_KEY);
         return binding.getRoot();
     }
 
 
-    public void saveMap(HashMap<String, Station> map, String key) {
-        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this.getActivity());
-        SharedPreferences.Editor editor = prefs.edit();
-        Gson gson = new Gson();
-        String json = gson.toJson(map);
-        Log.d("ListFragment", "saveArrayList: Opgeslagen json: " + json);
-        editor.putString(key, json);
-        editor.apply();
-    }
 
-    public HashMap<String, Station> loadMap(String key) {
-        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this.getActivity());
-        Gson gson = new Gson();
-        String json = prefs.getString(key, null);
-        Log.d(TAG, "loadMap: Geladen json: " + json);
-        if (json == null || json.equals("null") || json.equals("[]")) {
-            Log.d(TAG, "loadArrayList: Geen data aanwezig, genereert nieuwe lijst..");
-            return new HashMap<String, Station>();
-        }
-        Type type = new TypeToken<HashMap<String, Station>>() {
-        }.getType();
-        return gson.fromJson(json, type);
-    }
-
-    public HashMap<String, Station> loadMapJson() {
-        Gson gson = new Gson();
-        String json = loadJSONFromAsset();
-        Log.d(TAG, "loadMap: Geladen json: " + json);
-        if (json == null || json.equals("null") || json.equals("[]")) {
-            Log.d(TAG, "loadArrayList: Geen data aanwezig, genereert nieuwe lijst..");
-            return new HashMap<String, Station>();
-        }
-        Type type = new TypeToken<HashMap<String, Station>>() {
-        }.getType();
-        return gson.fromJson(json, type);
-    }
-
-    public String loadJSONFromAsset() {
-        String json = null;
-        try {
-            InputStream is = getActivity().getAssets().open("mockdata.json");
-            int size = is.available();
-            byte[] buffer = new byte[size];
-            is.read(buffer);
-            is.close();
-            json = new String(buffer, "UTF-8");
-        } catch (IOException ex) {
-            ex.printStackTrace();
-            return null;
-        }
-        return json;
-    }
 
     public void syncData(boolean updateView) {
-        Log.d(TAG, "syncData: called");
         stations = new ArrayList<Station>();
         if (stationsMap.size() != stations.size()) {
             for (int i = 0; i < stationsMap.size(); i++) {
@@ -153,19 +100,16 @@ public class BakbordenLijstFragment extends Fragment {
     public void onDestroyView() {
         super.onDestroyView();
         binding = null;
-        Log.d(TAG, "onDestroyView: called");
     }
 
     @Override
     public void onStop() {
-        saveMap(stationsMap, Definitions.STATION_LIST_KEY);
+        io.saveMap(stationsMap, Definitions.STATION_LIST_KEY);
         super.onStop();
-        Log.d(TAG, "onStop: called");
     }
 
     public void onResume() {
-        Log.d(TAG, "onResume: called");
-        saveMap(stationsMap, Definitions.STATION_LIST_KEY);
+        io.saveMap(stationsMap, Definitions.STATION_LIST_KEY);
         super.onResume();
         syncData(true);
     }

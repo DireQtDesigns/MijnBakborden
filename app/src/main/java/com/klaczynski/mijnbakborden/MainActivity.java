@@ -3,8 +3,6 @@ package com.klaczynski.mijnbakborden;
 import android.content.Intent;
 import android.os.Bundle;
 
-import com.google.android.material.snackbar.Snackbar;
-
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.view.View;
@@ -16,12 +14,11 @@ import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
 import com.klaczynski.mijnbakborden.databinding.ActivityMainBinding;
+import com.klaczynski.mijnbakborden.misc.Definitions;
 import com.klaczynski.mijnbakborden.objects.Station;
 
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.BaseAdapter;
-import android.widget.ListView;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -79,10 +76,10 @@ public class MainActivity extends AppCompatActivity {
             fragment.stationsMap = new HashMap<String, Station>();
             fragment.stations = new ArrayList<Station>();
             fragment.syncData(true);
-            fragment.saveMap(fragment.stationsMap, Definitions.STATION_LIST_KEY);
+            fragment.io.saveMap(fragment.stationsMap, Definitions.STATION_LIST_KEY);
         } else if (id == R.id.action_mock_data) {
-            fragment.stationsMap = fragment.loadMapJson();
-            fragment.saveMap(fragment.stationsMap, Definitions.STATION_LIST_KEY);
+            fragment.stationsMap = fragment.io.loadMapJson();
+            fragment.io.saveMap(fragment.stationsMap, Definitions.STATION_LIST_KEY);
             fragment.syncData(true);
         } else if (id == R.id.action_refresh) {
             fragment.syncData(true);

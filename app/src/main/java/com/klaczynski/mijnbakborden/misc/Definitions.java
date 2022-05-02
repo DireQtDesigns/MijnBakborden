@@ -1,4 +1,4 @@
-package com.klaczynski.mijnbakborden;
+package com.klaczynski.mijnbakborden.misc;
 
 public class Definitions {
     public static final String SHARED_PREFS_FILE = "BakbordPrefs";
