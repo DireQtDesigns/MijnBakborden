@@ -12,6 +12,7 @@ public class MockData {
 
     //99=eindbord, 123=sein, 456=juk
 
+    @Deprecated
     public static void populateMockData() {
         BakbordenLijstFragment.stationsMap.clear();
         /*//Almelo
