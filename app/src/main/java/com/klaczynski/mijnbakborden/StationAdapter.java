@@ -4,15 +4,19 @@ import android.app.Dialog;
 import android.content.Context;
 import android.graphics.Color;
 import android.graphics.Typeface;
+import android.graphics.drawable.ColorDrawable;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import androidx.fragment.app.FragmentManager;
 
 import com.klaczynski.mijnbakborden.objects.Platform;
 import com.klaczynski.mijnbakborden.objects.Station;
@@ -52,7 +56,35 @@ public class StationAdapter extends ArrayAdapter<Station> {
             @Override
             public void onClick(View view) {
                 showDialog(station);
-                Log.d(TAG, "onClick: clicked item: "+position);
+                Log.d(TAG, "onClick: clicked item: " + position);
+            }
+        });
+        layout.setLongClickable(true);
+        layout.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View view) {
+                Dialog viewDialog = new Dialog(getContext());
+                viewDialog.setContentView(R.layout.dialog_delete);
+                viewDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+                viewDialog.show();
+                Button btnYes = viewDialog.findViewById(R.id.buttonYes);
+                Button btnNo = viewDialog.findViewById(R.id.buttonNo);
+
+                btnYes.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        BakbordenLijstFragment.stationsMap.remove(station.getAbbreviation());
+                        ((BakbordenLijstFragment) FragmentManager.findFragment(layout)).syncData(true);
+                        viewDialog.dismiss();
+                    }
+                });
+                btnNo.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        viewDialog.dismiss();
+                    }
+                });
+                return false;
             }
         });
 
@@ -109,6 +141,7 @@ public class StationAdapter extends ArrayAdapter<Station> {
 
     private void showDialog(Station s) {
         Dialog dialog = new Dialog(getContext());
+        Log.d(TAG, "showDialog: " + getContext().toString());
         dialog.setContentView(R.layout.station_dialog);
         dialog.getWindow().setLayout(WindowManager.LayoutParams.MATCH_PARENT, WindowManager.LayoutParams.WRAP_CONTENT);
         dialog.show();
@@ -190,9 +223,9 @@ public class StationAdapter extends ArrayAdapter<Station> {
             spoorText += p1.getName() + " " + (p1.isA_to_b() ? "A -> B: " : "B -> A: ");
             for (int i = 0; i < p1.getBakborden().size(); i++) {
                 if (i != p1.getBakborden().size() - 1) {
-                    spoorText += p1.getBakborden().get(i).toString().replace("99", "Eindbord").replace("123", "Sein").replace("456", "Stootjuk") + ", ";
+                    spoorText += p1.getBakborden().get(i).toString().replace("99", "Eindbord").replace("123", "Sein").replace("456", "Stootjuk").replace("789", "Geen") + ", ";
                 } else {
-                    spoorText += p1.getBakborden().get(i).toString().replace("99", "Eindbord").replace("123", "Sein").replace("456", "Stootjuk");
+                    spoorText += p1.getBakborden().get(i).toString().replace("99", "Eindbord").replace("123", "Sein").replace("456", "Stootjuk").replace("789", "Geen");
                 }
             }
             sp1.setText(spoorText);
@@ -213,9 +246,9 @@ public class StationAdapter extends ArrayAdapter<Station> {
             spoorText += p2.getName() + " " + (p2.isA_to_b() ? "A -> B: " : "B -> A: ");
             for (int i = 0; i < p2.getBakborden().size(); i++) {
                 if (i != p2.getBakborden().size() - 1) {
-                    spoorText += p2.getBakborden().get(i).toString().replace("99", "Eindbord").replace("123", "Sein").replace("456", "Stootjuk") + ", ";
+                    spoorText += p2.getBakborden().get(i).toString().replace("99", "Eindbord").replace("123", "Sein").replace("456", "Stootjuk").replace("789", "Geen") + ", ";
                 } else {
-                    spoorText += p2.getBakborden().get(i).toString().replace("99", "Eindbord").replace("123", "Sein").replace("456", "Stootjuk");
+                    spoorText += p2.getBakborden().get(i).toString().replace("99", "Eindbord").replace("123", "Sein").replace("456", "Stootjuk").replace("789", "Geen");
                 }
             }
             sp2.setText(spoorText);
@@ -236,9 +269,9 @@ public class StationAdapter extends ArrayAdapter<Station> {
             spoorText += p3.getName() + " " + (p3.isA_to_b() ? "A -> B: " : "B -> A: ");
             for (int i = 0; i < p3.getBakborden().size(); i++) {
                 if (i != p3.getBakborden().size() - 1) {
-                    spoorText += p3.getBakborden().get(i).toString().replace("99", "Eindbord").replace("123", "Sein").replace("456", "Stootjuk") + ", ";
+                    spoorText += p3.getBakborden().get(i).toString().replace("99", "Eindbord").replace("123", "Sein").replace("456", "Stootjuk").replace("789", "Geen") + ", ";
                 } else {
-                    spoorText += p3.getBakborden().get(i).toString().replace("99", "Eindbord").replace("123", "Sein").replace("456", "Stootjuk");
+                    spoorText += p3.getBakborden().get(i).toString().replace("99", "Eindbord").replace("123", "Sein").replace("456", "Stootjuk").replace("789", "Geen");
                 }
             }
             sp3.setText(spoorText);
@@ -259,9 +292,9 @@ public class StationAdapter extends ArrayAdapter<Station> {
             spoorText += p4.getName() + " " + (p4.isA_to_b() ? "A -> B: " : "B -> A: ");
             for (int i = 0; i < p4.getBakborden().size(); i++) {
                 if (i != p4.getBakborden().size() - 1) {
-                    spoorText += p4.getBakborden().get(i).toString().replace("99", "Eindbord").replace("123", "Sein").replace("456", "Stootjuk") + ", ";
+                    spoorText += p4.getBakborden().get(i).toString().replace("99", "Eindbord").replace("123", "Sein").replace("456", "Stootjuk").replace("789", "Geen") + ", ";
                 } else {
-                    spoorText += p4.getBakborden().get(i).toString().replace("99", "Eindbord").replace("123", "Sein").replace("456", "Stootjuk");
+                    spoorText += p4.getBakborden().get(i).toString().replace("99", "Eindbord").replace("123", "Sein").replace("456", "Stootjuk").replace("789", "Geen");
                 }
             }
             sp4.setText(spoorText);
@@ -282,9 +315,9 @@ public class StationAdapter extends ArrayAdapter<Station> {
             spoorText += p5.getName() + " " + (p5.isA_to_b() ? "A -> B: " : "B -> A: ");
             for (int i = 0; i < p5.getBakborden().size(); i++) {
                 if (i != p5.getBakborden().size() - 1) {
-                    spoorText += p5.getBakborden().get(i).toString().replace("99", "Eindbord").replace("123", "Sein").replace("456", "Stootjuk") + ", ";
+                    spoorText += p5.getBakborden().get(i).toString().replace("99", "Eindbord").replace("123", "Sein").replace("456", "Stootjuk").replace("789", "Geen") + ", ";
                 } else {
-                    spoorText += p5.getBakborden().get(i).toString().replace("99", "Eindbord").replace("123", "Sein").replace("456", "Stootjuk");
+                    spoorText += p5.getBakborden().get(i).toString().replace("99", "Eindbord").replace("123", "Sein").replace("456", "Stootjuk").replace("789", "Geen");
                 }
             }
             sp5.setText(spoorText);
@@ -305,9 +338,9 @@ public class StationAdapter extends ArrayAdapter<Station> {
             spoorText += p6.getName() + " " + (p6.isA_to_b() ? "A -> B: " : "B -> A: ");
             for (int i = 0; i < p6.getBakborden().size(); i++) {
                 if (i != p6.getBakborden().size() - 1) {
-                    spoorText += p6.getBakborden().get(i).toString().replace("99", "Eindbord").replace("123", "Sein").replace("456", "Stootjuk") + ", ";
+                    spoorText += p6.getBakborden().get(i).toString().replace("99", "Eindbord").replace("123", "Sein").replace("456", "Stootjuk").replace("789", "Geen") + ", ";
                 } else {
-                    spoorText += p6.getBakborden().get(i).toString().replace("99", "Eindbord").replace("123", "Sein").replace("456", "Stootjuk");
+                    spoorText += p6.getBakborden().get(i).toString().replace("99", "Eindbord").replace("123", "Sein").replace("456", "Stootjuk").replace("789", "Geen");
                 }
             }
             sp6.setText(spoorText);
@@ -328,9 +361,9 @@ public class StationAdapter extends ArrayAdapter<Station> {
             spoorText += p7.getName() + " " + (p7.isA_to_b() ? "A -> B: " : "B -> A: ");
             for (int i = 0; i < p7.getBakborden().size(); i++) {
                 if (i != p7.getBakborden().size() - 1) {
-                    spoorText += p7.getBakborden().get(i).toString().replace("99", "Eindbord").replace("123", "Sein").replace("456", "Stootjuk") + ", ";
+                    spoorText += p7.getBakborden().get(i).toString().replace("99", "Eindbord").replace("123", "Sein").replace("456", "Stootjuk").replace("789", "Geen") + ", ";
                 } else {
-                    spoorText += p7.getBakborden().get(i).toString().replace("99", "Eindbord").replace("123", "Sein").replace("456", "Stootjuk");
+                    spoorText += p7.getBakborden().get(i).toString().replace("99", "Eindbord").replace("123", "Sein").replace("456", "Stootjuk").replace("789", "Geen");
                 }
             }
             sp7.setText(spoorText);
@@ -351,9 +384,9 @@ public class StationAdapter extends ArrayAdapter<Station> {
             spoorText += p8.getName() + " " + (p8.isA_to_b() ? "A -> B: " : "B -> A: ");
             for (int i = 0; i < p8.getBakborden().size(); i++) {
                 if (i != p8.getBakborden().size() - 1) {
-                    spoorText += p8.getBakborden().get(i).toString().replace("99", "Eindbord").replace("123", "Sein").replace("456", "Stootjuk") + ", ";
+                    spoorText += p8.getBakborden().get(i).toString().replace("99", "Eindbord").replace("123", "Sein").replace("456", "Stootjuk").replace("789", "Geen") + ", ";
                 } else {
-                    spoorText += p8.getBakborden().get(i).toString().replace("99", "Eindbord").replace("123", "Sein").replace("456", "Stootjuk");
+                    spoorText += p8.getBakborden().get(i).toString().replace("99", "Eindbord").replace("123", "Sein").replace("456", "Stootjuk").replace("789", "Geen");
                 }
             }
             sp8.setText(spoorText);
@@ -374,9 +407,9 @@ public class StationAdapter extends ArrayAdapter<Station> {
             spoorText += p9.getName() + " " + (p9.isA_to_b() ? "A -> B: " : "B -> A: ");
             for (int i = 0; i < p9.getBakborden().size(); i++) {
                 if (i != p9.getBakborden().size() - 1) {
-                    spoorText += p9.getBakborden().get(i).toString().replace("99", "Eindbord").replace("123", "Sein").replace("456", "Stootjuk") + ", ";
+                    spoorText += p9.getBakborden().get(i).toString().replace("99", "Eindbord").replace("123", "Sein").replace("456", "Stootjuk").replace("789", "Geen") + ", ";
                 } else {
-                    spoorText += p9.getBakborden().get(i).toString().replace("99", "Eindbord").replace("123", "Sein").replace("456", "Stootjuk");
+                    spoorText += p9.getBakborden().get(i).toString().replace("99", "Eindbord").replace("123", "Sein").replace("456", "Stootjuk").replace("789", "Geen");
                 }
             }
             sp9.setText(spoorText);
@@ -397,9 +430,9 @@ public class StationAdapter extends ArrayAdapter<Station> {
             spoorText += p10.getName() + " " + (p10.isA_to_b() ? "A -> B: " : "B -> A: ");
             for (int i = 0; i < p10.getBakborden().size(); i++) {
                 if (i != p10.getBakborden().size() - 1) {
-                    spoorText += p10.getBakborden().get(i).toString().replace("99", "Eindbord").replace("123", "Sein").replace("456", "Stootjuk") + ", ";
+                    spoorText += p10.getBakborden().get(i).toString().replace("99", "Eindbord").replace("123", "Sein").replace("456", "Stootjuk").replace("789", "Geen") + ", ";
                 } else {
-                    spoorText += p10.getBakborden().get(i).toString().replace("99", "Eindbord").replace("123", "Sein").replace("456", "Stootjuk");
+                    spoorText += p10.getBakborden().get(i).toString().replace("99", "Eindbord").replace("123", "Sein").replace("456", "Stootjuk").replace("789", "Geen");
                 }
             }
             sp10.setText(spoorText);
@@ -420,9 +453,9 @@ public class StationAdapter extends ArrayAdapter<Station> {
             spoorText += p11.getName() + " " + (p11.isA_to_b() ? "A -> B: " : "B -> A: ");
             for (int i = 0; i < p11.getBakborden().size(); i++) {
                 if (i != p11.getBakborden().size() - 1) {
-                    spoorText += p11.getBakborden().get(i).toString().replace("99", "Eindbord").replace("123", "Sein").replace("456", "Stootjuk") + ", ";
+                    spoorText += p11.getBakborden().get(i).toString().replace("99", "Eindbord").replace("123", "Sein").replace("456", "Stootjuk").replace("789", "Geen") + ", ";
                 } else {
-                    spoorText += p11.getBakborden().get(i).toString().replace("99", "Eindbord").replace("123", "Sein").replace("456", "Stootjuk");
+                    spoorText += p11.getBakborden().get(i).toString().replace("99", "Eindbord").replace("123", "Sein").replace("456", "Stootjuk").replace("789", "Geen");
                 }
             }
             sp11.setText(spoorText);
@@ -443,9 +476,9 @@ public class StationAdapter extends ArrayAdapter<Station> {
             spoorText += p12.getName() + " " + (p12.isA_to_b() ? "A -> B: " : "B -> A: ");
             for (int i = 0; i < p12.getBakborden().size(); i++) {
                 if (i != p12.getBakborden().size() - 1) {
-                    spoorText += p12.getBakborden().get(i).toString().replace("99", "Eindbord").replace("123", "Sein").replace("456", "Stootjuk") + ", ";
+                    spoorText += p12.getBakborden().get(i).toString().replace("99", "Eindbord").replace("123", "Sein").replace("456", "Stootjuk").replace("789", "Geen") + ", ";
                 } else {
-                    spoorText += p12.getBakborden().get(i).toString().replace("99", "Eindbord").replace("123", "Sein").replace("456", "Stootjuk");
+                    spoorText += p12.getBakborden().get(i).toString().replace("99", "Eindbord").replace("123", "Sein").replace("456", "Stootjuk").replace("789", "Geen");
                 }
             }
             sp12.setText(spoorText);
@@ -460,6 +493,5 @@ public class StationAdapter extends ArrayAdapter<Station> {
                 }
             });
         }
-
     }
 }

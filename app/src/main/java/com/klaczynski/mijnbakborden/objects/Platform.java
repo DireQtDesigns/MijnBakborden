@@ -40,9 +40,9 @@ public class Platform {
         String returnString = "";
         for (int i = 0; i < getBakborden().size(); i++) {
             if (i != getBakborden().size() - 1) {
-                returnString += getBakborden().get(i).toString().replace("99", "Eindbord").replace("123", "Sein").replace("456", "Stootjuk") + ", ";
+                returnString += getBakborden().get(i).toString().replace("99", "Eindbord").replace("123", "Sein").replace("456", "Stootjuk").replace("789", "Geen") + ", ";
             } else {
-                returnString += getBakborden().get(i).toString().replace("99", "Eindbord").replace("123", "Sein").replace("456", "Stootjuk");
+                returnString += getBakborden().get(i).toString().replace("99", "Eindbord").replace("123", "Sein").replace("456", "Stootjuk").replace("789", "Geen");
             }
         }
         return returnString;
@@ -52,9 +52,9 @@ public class Platform {
         String returnString = "";
         for (int i = 0; i < getBakborden().size(); i++) {
             if (i != getBakborden().size() - 1) {
-                returnString += getBakborden().get(i).toString().replace("99", "Eindbord").replace("123", "Sein").replace("456", "Stootjuk") + ", ";
+                returnString += getBakborden().get(i).toString().replace("99", "Eindbord").replace("123", "Sein").replace("456", "Stootjuk").replace("789", "Geen") + ", ";
             } else {
-                returnString += getBakborden().get(i).toString().replace("99", "Eindbord").replace("123", "Sein").replace("456", "Stootjuk");
+                returnString += getBakborden().get(i).toString().replace("99", "Eindbord").replace("123", "Sein").replace("456", "Stootjuk").replace("789", "Geen");
             }
         }
         return returnString;

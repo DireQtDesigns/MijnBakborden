@@ -12,6 +12,7 @@ import android.widget.Toast;
 import android.widget.ToggleButton;
 
 import com.google.android.material.button.MaterialButton;
+import com.klaczynski.mijnbakborden.misc.BakbordenType;
 import com.klaczynski.mijnbakborden.objects.Platform;
 import com.klaczynski.mijnbakborden.objects.Station;
 
@@ -132,9 +133,10 @@ public class CreationActivity extends AppCompatActivity {
             if (bord14.isChecked()) bakborden.add(14);
             if (bord15.isChecked()) bakborden.add(15);
             if (bord16.isChecked()) bakborden.add(16);
-            if (bordE.isChecked()) bakborden.add(99);
-            if (bordS.isChecked()) bakborden.add(123);
-            if (bordJ.isChecked()) bakborden.add(456);
+            if (bordE.isChecked()) bakborden.add(BakbordenType.EINDBORD);
+            if (bordS.isChecked()) bakborden.add(BakbordenType.SEIN);
+            if (bordJ.isChecked()) bakborden.add(BakbordenType.JUK);
+            if (bordG.isChecked()) bakborden.add(BakbordenType.GEEN);
 
             if (bakborden.size() == 0 || bakborden == null) {
                 Toast toast = Toast.makeText(getApplicationContext(),
