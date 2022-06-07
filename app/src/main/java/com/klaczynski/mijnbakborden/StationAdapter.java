@@ -143,7 +143,7 @@ public class StationAdapter extends ArrayAdapter<Station> {
         Dialog dialog = new Dialog(getContext());
         Log.d(TAG, "showDialog: " + getContext().toString());
         dialog.setContentView(R.layout.station_dialog);
-        dialog.getWindow().setLayout(WindowManager.LayoutParams.MATCH_PARENT, WindowManager.LayoutParams.WRAP_CONTENT);
+        dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
         dialog.show();
 
         TextView stationName = dialog.findViewById(R.id.dialogName);
